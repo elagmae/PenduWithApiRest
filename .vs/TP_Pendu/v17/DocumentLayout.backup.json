@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\leapo\\Projets\\Reseau\\PenduWithApiRest\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C5F06A20-661C-483E-8A78-E8B8D9CFF520}|TP_Pendu.AppHost\\TP_Pendu.AppHost.csproj|c:\\users\\leapo\\projets\\reseau\\penduwithapirest\\tp_pendu.apphost\\apphost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5F06A20-661C-483E-8A78-E8B8D9CFF520}|TP_Pendu.AppHost\\TP_Pendu.AppHost.csproj|solutionrelative:tp_pendu.apphost\\apphost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{970BB2DF-9573-4E34-8EE4-1636064534C1}|Client\\Client.csproj|c:\\users\\leapo\\projets\\reseau\\penduwithapirest\\client\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{970BB2DF-9573-4E34-8EE4-1636064534C1}|Client\\Client.csproj|solutionrelative:client\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Client.cs",
+              "DocumentMoniker": "C:\\Users\\leapo\\Projets\\Reseau\\PenduWithApiRest\\Client\\Client.cs",
+              "RelativeDocumentMoniker": "Client\\Client.cs",
+              "ToolTip": "C:\\Users\\leapo\\Projets\\Reseau\\PenduWithApiRest\\Client\\Client.cs",
+              "RelativeToolTip": "Client\\Client.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAswF8AAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-16T16:25:14.463Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AppHost.cs",
+              "DocumentMoniker": "C:\\Users\\leapo\\Projets\\Reseau\\PenduWithApiRest\\TP_Pendu.AppHost\\AppHost.cs",
+              "RelativeDocumentMoniker": "TP_Pendu.AppHost\\AppHost.cs",
+              "ToolTip": "C:\\Users\\leapo\\Projets\\Reseau\\PenduWithApiRest\\TP_Pendu.AppHost\\AppHost.cs",
+              "RelativeToolTip": "TP_Pendu.AppHost\\AppHost.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAGcAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-16T15:58:58.177Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
