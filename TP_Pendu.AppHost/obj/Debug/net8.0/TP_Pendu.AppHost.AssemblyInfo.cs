@@ -26,7 +26,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TP_Pendu.AppHost")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+39ecc6ab285450cb4d18a01cf1ecd7057322eabc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6edee033f0653020f77190ebece1423f6e2c2b82")]
 [assembly: System.Reflection.AssemblyProductAttribute("TP_Pendu.AppHost")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TP_Pendu.AppHost")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

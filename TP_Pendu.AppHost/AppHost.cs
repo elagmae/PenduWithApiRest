@@ -59,6 +59,11 @@ if (app.Environment.IsDevelopment())
 
 #region MapGet
 
+app.MapGet("/", () => 
+{
+    return "Hello ! Thank you for playing this game !";
+});
+
 app.MapGet("/GetGames", () =>
 {
     connection.Open();
@@ -96,6 +101,8 @@ app.MapGet("/GetFinishedGames", () =>
 
 app.MapPost("/CreateGame", (string wordToGuess) =>
 {
+    wordToGuess = wordToGuess.ToUpper();
+
     connection.Open();
     using var command = connection.CreateCommand();
     command.CommandText =
@@ -123,6 +130,7 @@ app.MapPost("/CreateGame", (string wordToGuess) =>
 
 app.MapPost("/GuessLetter", (int id, char letter) =>
 {
+    letter = Char.ToUpper(letter);
     if (!IsCurrentGame(id)) return "You already finished this game ! Create a new one to play again !";
     connection.Open();
 
@@ -193,6 +201,7 @@ app.MapPost("/GuessLetter", (int id, char letter) =>
 
 app.MapPost("/GuessWord", (int id, string word) =>
 {
+    word = word.ToUpper();
     if (!IsCurrentGame(id)) return "You already finished this game ! Create a new one to play again !";
     connection.Open();
     using var command = connection.CreateCommand();
