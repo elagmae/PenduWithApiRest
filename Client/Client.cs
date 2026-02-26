@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-
-var client = new HttpClient();
+﻿var client = new HttpClient();
 var response = await client.GetAsync("https://localhost:17259/");
 var body = await response.Content.ReadAsStringAsync();
 
