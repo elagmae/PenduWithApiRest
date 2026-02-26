@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rRucTCv0tyw=",
+  "dgSpecHash": "1tTXsgNJtgs=",
   "success": true,
-  "projectFilePath": "C:\\Users\\leapo\\Projets\\Reseau\\TP_Pendu\\TP_Pendu.AppHost\\TP_Pendu.AppHost.csproj",
+  "projectFilePath": "C:\\Users\\leapo\\Projets\\Reseau\\PenduWithApiRest\\TP_Pendu.AppHost\\TP_Pendu.AppHost.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\leapo\\.nuget\\packages\\aspire.dashboard.sdk.win-x64\\9.5.0\\aspire.dashboard.sdk.win-x64.9.5.0.nupkg.sha512",
     "C:\\Users\\leapo\\.nuget\\packages\\aspire.hosting\\9.5.0\\aspire.hosting.9.5.0.nupkg.sha512",

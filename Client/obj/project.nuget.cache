@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "H4SjHK1dqzA=",
+  "dgSpecHash": "DAY9BZOPiIs=",
   "success": true,
-  "projectFilePath": "C:\\Users\\leapo\\Projets\\Reseau\\TP_Pendu\\Client\\Client.csproj",
+  "projectFilePath": "C:\\Users\\leapo\\Projets\\Reseau\\PenduWithApiRest\\Client\\Client.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

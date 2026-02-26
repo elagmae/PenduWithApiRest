@@ -18,15 +18,15 @@ using System.Reflection;
     "xt\\")]
 [assembly: System.Reflection.AssemblyMetadata("dcpbinpath", "C:\\Users\\leapo\\.nuget\\packages\\aspire.hosting.orchestration.win-x64\\9.5.0\\tools\\e" +
     "xt\\bin\\")]
-[assembly: System.Reflection.AssemblyMetadata("apphostprojectpath", "C:\\Users\\leapo\\Projets\\Reseau\\TP_Pendu\\TP_Pendu.AppHost")]
+[assembly: System.Reflection.AssemblyMetadata("apphostprojectpath", "C:\\Users\\leapo\\Projets\\Reseau\\PenduWithApiRest\\TP_Pendu.AppHost")]
 [assembly: System.Reflection.AssemblyMetadata("apphostprojectname", "TP_Pendu.AppHost.csproj")]
 [assembly: System.Reflection.AssemblyMetadata("aspiredashboardpath", "C:\\Users\\leapo\\.nuget\\packages\\aspire.dashboard.sdk.win-x64\\9.5.0\\tools\\Aspire.Da" +
     "shboard.exe")]
-[assembly: System.Reflection.AssemblyMetadataAttribute("apphostprojectbaseintermediateoutputpath", "C:\\Users\\leapo\\Projets\\Reseau\\TP_Pendu\\TP_Pendu.AppHost\\obj\\")]
+[assembly: System.Reflection.AssemblyMetadataAttribute("apphostprojectbaseintermediateoutputpath", "C:\\Users\\leapo\\Projets\\Reseau\\PenduWithApiRest\\TP_Pendu.AppHost\\obj\\")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("TP_Pendu.AppHost")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+39ecc6ab285450cb4d18a01cf1ecd7057322eabc")]
 [assembly: System.Reflection.AssemblyProductAttribute("TP_Pendu.AppHost")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TP_Pendu.AppHost")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

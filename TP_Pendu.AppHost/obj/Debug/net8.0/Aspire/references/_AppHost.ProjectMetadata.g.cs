@@ -17,5 +17,5 @@ public class TP_Pendu_AppHost
     /// <summary>
     /// The path to the Aspire Host project.
     /// </summary>
-    public static string ProjectPath => """C:\Users\leapo\Projets\Reseau\TP_Pendu\TP_Pendu.AppHost""";
+    public static string ProjectPath => """C:\Users\leapo\Projets\Reseau\PenduWithApiRest\TP_Pendu.AppHost""";
 }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TP_Pendu.ServiceDefaults")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+39ecc6ab285450cb4d18a01cf1ecd7057322eabc")]
 [assembly: System.Reflection.AssemblyProductAttribute("TP_Pendu.ServiceDefaults")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TP_Pendu.ServiceDefaults")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
