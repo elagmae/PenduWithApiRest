@@ -35,7 +35,7 @@ async Task Game()
 {
     await Task.Yield();
 
-    string[] actions = new string[] { "GET ACTIVE GAMES", "GET FINISHED GAMES", "CREATE NEW GAME", "GUESS LETTER IN GAME", "GUESS WORD IN GAME", "DELETE GAME" };
+    string[] actions = new string[] { "GET ACTIVE GAMES", "GET FINISHED GAMES", "GET FINISHED GAME HISTORY", "CREATE NEW GAME", "GUESS LETTER IN GAME", "GUESS WORD IN GAME", "DELETE GAME" };
 
     Console.WriteLine($"Here are your possibles actions :");
     for (int i = 0; i < actions.Length; i++)
@@ -75,105 +75,123 @@ async Task Game()
             break;
 
         case 2:
-            await CreateGame();
+
+            Console.WriteLine("Choose the game ID you want the history from :");
+            string id = Console.ReadLine();
+
+            while (!int.TryParse(id, out int gameId) || gameId < 1)
+            {
+                Console.WriteLine("Invalid id, please enter a valid one.");
+                id = Console.ReadLine();
+            }
+
+            response = await client.GetAsync($"https://localhost:17259/GetFinishedGameHistory?id={id}");
+            body = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(body);
             break;
 
         case 3:
-            await GuessLetter();
+            await CreateGame();
             break;
 
         case 4:
-            await GuessWord();
+            await GuessLetter();
             break;
 
         case 5:
+            await GuessWord();
+            break;
+
+        case 6:
             await DeleteGame();
             break;
     }
 
-    #region Post Methods
-
-    async Task CreateGame()
-    {
-        await Task.Yield();
-        Console.WriteLine("Please enter the word you want to be guessed (only letters, no spaces) :");
-        string wordToGuess = Console.ReadLine();
-
-        while (string.IsNullOrEmpty(wordToGuess) || !wordToGuess.All(char.IsLetter))
-        {
-            Console.WriteLine("Invalid word, please enter a valid word (only letters, no spaces) :");
-            wordToGuess = Console.ReadLine();
-        }
-
-        response = await client.PostAsync($"https://localhost:17259/CreateGame?wordToGuess={wordToGuess}", null);
-        body = await response.Content.ReadAsStringAsync();
-        Console.WriteLine(body);
-    }
-
-    async Task GuessLetter()
-    {
-        await Task.Yield();
-        Console.WriteLine("Please enter the ID of the game you want to play :");
-        string id = Console.ReadLine();
-
-        while (!int.TryParse(id, out int gameId) || gameId < 1)
-        {
-            Console.WriteLine("Invalid ID, please enter a valid ID (positive integer) :");
-            id = Console.ReadLine();
-        }
-
-        Console.WriteLine("Please enter the letter you want to guess :");
-        string letter = Console.ReadLine();
-        while (string.IsNullOrEmpty(letter) || !char.IsLetter(letter[0]) || letter.Length > 1)
-        {
-            Console.WriteLine("Invalid letter, please enter a valid letter (only one letter) :");
-            letter = Console.ReadLine();
-        }
-        response = await client.PostAsync($"https://localhost:17259/GuessLetter?id={id}&letter={letter}", null);
-        body = await response.Content.ReadAsStringAsync();
-        Console.WriteLine(body);
-    }
-
-    async Task GuessWord()
-    {
-        await Task.Yield();
-        Console.WriteLine("Please enter the ID of the game you want to play :");
-        string id = Console.ReadLine();
-        while (!int.TryParse(id, out int gameId) || gameId < 1)
-        {
-            Console.WriteLine("Invalid ID, please enter a valid ID (positive integer) :");
-            id = Console.ReadLine();
-        }
-        Console.WriteLine("Please enter the word you want to guess :");
-        string word = Console.ReadLine();
-        while (string.IsNullOrEmpty(word) || !word.All(char.IsLetter))
-        {
-            Console.WriteLine("Invalid word, please enter a valid word (only letters, no spaces) :");
-            word = Console.ReadLine();
-        }
-        response = await client.PostAsync($"https://localhost:17259/GuessWord?id={id}&word={word}", null);
-        body = await response.Content.ReadAsStringAsync();
-        Console.WriteLine(body);
-    }
-
-    async Task DeleteGame()
-    {
-        await Task.Yield();
-        Console.WriteLine("Please enter the ID of the game you want to delete :");
-        string id = Console.ReadLine();
-        while (!int.TryParse(id, out int gameId) || gameId < 1)
-        {
-            Console.WriteLine("Invalid ID, please enter a valid ID (positive integer) :");
-            id = Console.ReadLine();
-        }
-        response = await client.PostAsync($"https://localhost:17259/DeleteGame?id={id}", null);
-        body = await response.Content.ReadAsStringAsync();
-        Console.WriteLine(body);
-    }
-
-    #endregion
-
 }
+
+#region Methods
+
+async Task CreateGame()
+{
+    await Task.Yield();
+    Console.WriteLine("Please enter the word you want to be guessed (only letters, no spaces) :");
+    string wordToGuess = Console.ReadLine();
+
+    while (string.IsNullOrEmpty(wordToGuess) || !wordToGuess.All(char.IsLetter))
+    {
+        Console.WriteLine("Invalid word, please enter a valid word (only letters, no spaces) :");
+        wordToGuess = Console.ReadLine();
+    }
+
+    response = await client.PostAsync($"https://localhost:17259/CreateGame?wordToGuess={wordToGuess}", null);
+    body = await response.Content.ReadAsStringAsync();
+    Console.WriteLine(body);
+}
+
+async Task GuessLetter()
+{
+    await Task.Yield();
+    Console.WriteLine("Please enter the ID of the game you want to play :");
+    string id = Console.ReadLine();
+
+    while (!int.TryParse(id, out int gameId) || gameId < 1)
+    {
+        Console.WriteLine("Invalid ID, please enter a valid ID (positive integer) :");
+        id = Console.ReadLine();
+    }
+
+    Console.WriteLine("Please enter the letter you want to guess :");
+    string letter = Console.ReadLine();
+    while (string.IsNullOrEmpty(letter) || !char.IsLetter(letter[0]) || letter.Length > 1)
+    {
+        Console.WriteLine("Invalid letter, please enter a valid letter (only one letter) :");
+        letter = Console.ReadLine();
+    }
+    response = await client.PostAsync($"https://localhost:17259/GuessLetter?id={id}&letter={letter}", null);
+    body = await response.Content.ReadAsStringAsync();
+    Console.WriteLine(body);
+}
+
+async Task GuessWord()
+{
+    await Task.Yield();
+    Console.WriteLine("Please enter the ID of the game you want to play :");
+    string id = Console.ReadLine();
+    while (!int.TryParse(id, out int gameId) || gameId < 1)
+    {
+        Console.WriteLine("Invalid ID, please enter a valid ID (positive integer) :");
+        id = Console.ReadLine();
+    }
+    Console.WriteLine("Please enter the word you want to guess :");
+    string word = Console.ReadLine();
+    while (string.IsNullOrEmpty(word) || !word.All(char.IsLetter))
+    {
+        Console.WriteLine("Invalid word, please enter a valid word (only letters, no spaces) :");
+        word = Console.ReadLine();
+    }
+    response = await client.PostAsync($"https://localhost:17259/GuessWord?id={id}&word={word}", null);
+    body = await response.Content.ReadAsStringAsync();
+    Console.WriteLine(body);
+}
+
+async Task DeleteGame()
+{
+    await Task.Yield();
+    Console.WriteLine("Please enter the ID of the game you want to delete :");
+    string id = Console.ReadLine();
+    if (!int.TryParse(id, out int gameId) || gameId < 1)
+    {
+        Console.WriteLine("Invalid ID, please enter a valid ID (positive integer) :");
+        id = Console.ReadLine();
+        return;
+    }
+
+    response = await client.DeleteAsync($"https://localhost:17259/DeleteGame?id={id}");
+    body = await response.Content.ReadAsStringAsync();
+    Console.WriteLine(body);
+}
+
+#endregion
 
 
 

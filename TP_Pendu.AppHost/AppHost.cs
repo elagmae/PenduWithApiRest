@@ -66,33 +66,134 @@ app.MapGet("/", () =>
 
 app.MapGet("/GetGames", () =>
 {
+    int count = 0;
+    string games = "";
+
     connection.Open();
     using var command = connection.CreateCommand();
-    command.CommandText = "SELECT COUNT(*) FROM GAMES WHERE STATE = 0;";
+    command.CommandText = "SELECT * FROM GAMES WHERE STATE = 0;";
 
-    int count = 0;
-    using var reader = command.ExecuteReader();
-    while (reader.Read())
+    using (var reader = command.ExecuteReader())
     {
-        count = (int)reader.GetInt64(0);
+        while(reader.Read())
+        {
+            count++;
+            games += $" \n- Playable at ID {reader.GetInt32(0)}.";
+        }
+
+        if(count == 0)
+        {
+            connection.Close();
+            return "You have 0 active games";
+        }
     }
+
     connection.Close();
-    return "You have " + count + " active games.";
+    return "You have " + count + " active games." + games;
 });
 
 app.MapGet("/GetFinishedGames", () =>
 {
+    int count = 0;
+    string games = "";
+    string stateResult = "";
+
     connection.Open();
     using var command = connection.CreateCommand();
-    command.CommandText = "SELECT COUNT(*) FROM GAMES WHERE STATE != 0;";
-    int count = 0;
-    using var reader = command.ExecuteReader();
-    while (reader.Read())
+    command.CommandText = "SELECT * FROM GAMES WHERE STATE != 0;";
+
+    using (var reader = command.ExecuteReader())
     {
-        count = (int)reader.GetInt64(0);
+        while (reader.Read())
+        {
+            count++;
+            stateResult = reader.GetInt32(2) == 1 ? "won" : "lost";
+            games += $" \nOne Game has been {stateResult} at ID {reader.GetInt32(0)}. This game's word was {reader.GetString(1)}";
+        }
+
+        if(count == 0)
+        {
+            connection.Close();
+            return "You have 0 finished games.";
+        }
     }
+
+    command.Parameters.Clear();
     connection.Close();
-    return "You have " + count + " finished games.";
+    return "You have " + count + " finished games." + games;
+});
+
+app.MapGet("/GetFinishedGameHistory", (int id) => 
+{
+    connection.Open();
+    using var command = connection.CreateCommand();
+
+    string stateResult = "";
+
+    command.CommandText =
+    """
+    SELECT GUESSES.GAME_ID, GUESSES.GUESS, GAMES.STATE FROM GAMES 
+    INNER JOIN GUESSES ON GUESSES.GAME_ID = $id AND GUESSES.GAME_ID = GAMES.ID 
+    WHERE GAMES.STATE = 1 OR GAMES.STATE = 2;
+    """;
+
+    command.Parameters.AddWithValue("$id", id);
+
+    string guesses = "";
+    string word = "";
+
+    using (var reader = command.ExecuteReader())
+    {
+        if (!reader.Read())
+        {
+            connection.Close();
+            return "This game isn't a finished game. Your ID is incorrect. Try another one.";
+        }
+
+        int state = reader.GetInt32(2);
+        int gameId = reader.GetInt32(0);
+
+        stateResult = state == 1 ? $"The game with the ID {gameId} was won." : $"The game with the ID {gameId} was lost.";
+
+
+        int guessIndex = 0;
+        string tryNb = "th";
+
+        while (reader.Read())
+        {
+            guessIndex++;
+            
+            string guess = reader.GetString(1);
+
+            if (guessIndex == 1) tryNb = "st";
+            else if (guessIndex == 2) tryNb = "nd";
+            else if (guessIndex == 3) tryNb = "rd";
+            else tryNb = "th";
+
+            guesses += $"\nYou guessed {guess} on your {guessIndex}{tryNb} try.";
+        }
+    }
+
+    command.Parameters.Clear();
+
+    command.CommandText = "SELECT WORD FROM GAMES WHERE GAMES.ID = $id";
+    command.Parameters.AddWithValue("$id", id);
+
+    using (var reader = command.ExecuteReader())
+    {
+        if (!reader.Read())
+        {
+            connection.Close();
+            return $"Game with ID {id} does not exist.";
+        }
+
+        word = reader.GetString(0);
+    }
+
+    command.Parameters.Clear();
+
+    connection.Close();
+    return $"{stateResult} \nDuring this game : \n{guesses} \nThe word was {word}.";
 });
 
 #endregion
@@ -269,6 +370,10 @@ app.MapPost("/GuessWord", (int id, string word) =>
     return answer;
 });
 
+#endregion
+
+#region MapDelete
+
 app.MapDelete("/DeleteGame", (int id) =>
 {
     connection.Open();
@@ -295,7 +400,7 @@ app.MapDelete("/DeleteGame", (int id) =>
     DELETE FROM sqlite_sequence WHERE name='GUESSES';
     DELETE FROM sqlite_sequence WHERE name='GAMES';
     """;
-    
+
     command.Parameters.AddWithValue("$id", id);
     command.ExecuteNonQuery();
 
